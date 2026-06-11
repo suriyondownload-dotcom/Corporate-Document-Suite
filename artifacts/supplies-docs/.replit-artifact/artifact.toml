@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "The Supplies — Document Templates"
+version = "1.0.0"
+id = "artifacts/supplies-docs"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25281
+
+[services.development]
+run = "pnpm --filter @workspace/supplies-docs run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/supplies-docs", "run", "build" ]
+publicDir = "artifacts/supplies-docs/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25281"
+BASE_PATH = "/"

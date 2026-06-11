@@ -1,0 +1,127 @@
+import { company, docDate, docNo } from "../data/company";
+import { LogoAHorizontal } from "../components/LogoA";
+
+const BK = "#111";
+const LG = "#f8f8f8";
+
+const items = [
+  { no: "01", desc: "ลิฟต์โดยสาร BLT / Passenger Elevator BLT", unit: "เครื่อง", qty: 1, price: "0.00" },
+  { no: "02", desc: "งานติดตั้ง / Installation Works", unit: "งาน", qty: 1, price: "0.00" },
+  { no: "03", desc: "อุปกรณ์เสริม / Accessories", unit: "ชุด", qty: 1, price: "0.00" },
+  { no: "", desc: "", unit: "", qty: null, price: "" },
+];
+
+export function InvoiceA({ type = "TAX INVOICE" }: { type?: string }) {
+  const isTax = type === "TAX INVOICE";
+  return (
+    <div className="doc-page" style={{ background: "#fff", fontFamily: "'Helvetica Neue', Arial, sans-serif" }}>
+      <div style={{ padding: "28px 44px 0" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <LogoAHorizontal height={40} />
+          <div style={{ textAlign: "right", fontSize: 9, color: "#666", lineHeight: 1.8 }}>
+            <div style={{ fontWeight: 700, fontSize: 10, color: BK }}>{company.nameFullEN}</div>
+            <div>{company.nameFullTH}</div>
+            <div>{company.addressEN}</div>
+            <div>Tel: {company.tel} | {company.email}</div>
+            <div style={{ color: "#999" }}>Tax ID: {company.taxId}</div>
+          </div>
+        </div>
+        <div style={{ height: 2, background: BK, marginTop: 16 }} />
+        <div style={{ height: 1, background: BK, marginTop: 2 }} />
+      </div>
+
+      <div style={{ padding: "16px 44px 0" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 800, color: BK, letterSpacing: "0.06em" }}>{type}</div>
+            <div style={{ fontSize: 10.5, color: "#888", letterSpacing: "0.1em" }}>{isTax ? "ใบกำกับภาษี" : "ใบแจ้งหนี้"}</div>
+            {isTax && <div style={{ fontSize: 9, color: "#bbb", marginTop: 2 }}>ต้นฉบับ / Original</div>}
+          </div>
+          <div style={{ background: LG, padding: "12px 20px", fontSize: 10, lineHeight: 2.1 }}>
+            <div><span style={{ color: "#aaa", width: 110, display: "inline-block" }}>เลขที่ / No.:</span><strong>{docNo}</strong></div>
+            <div><span style={{ color: "#aaa", width: 110, display: "inline-block" }}>วันที่ / Date:</span>{docDate}</div>
+            {isTax && <div><span style={{ color: "#aaa", width: 110, display: "inline-block" }}>ครบกำหนด / Due:</span>30 วัน</div>}
+            <div><span style={{ color: "#aaa", width: 110, display: "inline-block" }}>อ้างอิง QT / QT Ref.:</span>TSE-QT-XXXX</div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 32px" }}>
+          {[["เรียน / BILL TO", ["ชื่อบริษัท / Company", "ที่อยู่ / Address", "เลขผู้เสียภาษี / Tax ID", "ผู้ติดต่อ / Contact"]], ["ข้อมูลโครงการ / PROJECT", ["ชื่อโครงการ / Project", "PO No.", "สั่งซื้อวันที่ / PO Date", "ที่อยู่จัดส่ง / Ship To"]]].map(([title, fields]) => (
+            <div key={title as string} style={{ background: LG, padding: "12px 16px" }}>
+              <div style={{ fontSize: 8.5, letterSpacing: "0.15em", color: "#aaa", marginBottom: 8 }}>{title as string}</div>
+              {(fields as string[]).map(f => (
+                <div key={f} style={{ borderBottom: "1px solid #e0e0e0", padding: "5px 0", fontSize: 10.5, display: "flex", gap: 6 }}>
+                  <span style={{ color: "#bbb", fontSize: 9, width: 110, flexShrink: 0 }}>{f}:</span>
+                  <span style={{ flex: 1 }}>&nbsp;</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 10.5, marginTop: 16 }}>
+          <thead>
+            <tr style={{ background: BK, color: "#fff" }}>
+              {["#", "รายละเอียด / Description", "หน่วย", "จำนวน", "ราคา/หน่วย", "จำนวนเงิน"].map((h, i) => (
+                <th key={h} style={{ padding: "8px 10px", textAlign: i < 2 ? "left" : "center", fontWeight: 600, letterSpacing: "0.06em", fontSize: 9 }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item, i) => (
+              <tr key={i} style={{ background: i % 2 === 0 ? "#fff" : LG, borderBottom: "1px solid #ececec" }}>
+                <td style={{ padding: "8px 10px", width: 28 }}>{item.no}</td>
+                <td style={{ padding: "8px 10px" }}>{item.desc}</td>
+                <td style={{ padding: "8px 10px", textAlign: "center" }}>{item.unit}</td>
+                <td style={{ padding: "8px 10px", textAlign: "center" }}>{item.qty ?? ""}</td>
+                <td style={{ padding: "8px 10px", textAlign: "right" }}>{item.price ? `฿ ${item.price}` : ""}</td>
+                <td style={{ padding: "8px 10px", textAlign: "right" }}>{item.price ? `฿ ${item.price}` : ""}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 10 }}>
+          <div style={{ width: 290 }}>
+            {[["รวม / Subtotal", "฿ 0.00"], ["VAT 7%", "฿ 0.00"], ["WHT 3%", "(฿ 0.00)"]].map(([l, v]) => (
+              <div key={l} style={{ display: "flex", justifyContent: "space-between", padding: "5px 12px", fontSize: 10.5, borderBottom: "1px solid #ececec" }}>
+                <span style={{ color: "#666" }}>{l}</span><span>{v}</span>
+              </div>
+            ))}
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 12px", background: BK, color: "#fff", fontWeight: 700, fontSize: 12, marginTop: 4 }}>
+              <span>ยอดสุทธิ / TOTAL</span><span>฿ 0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 14, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 24px" }}>
+          <div>
+            <div style={{ fontSize: 9, letterSpacing: "0.12em", color: "#aaa", marginBottom: 8 }}>ชำระโดย / PAYMENT METHOD</div>
+            <div style={{ fontSize: 9.5, color: "#555", lineHeight: 1.9 }}>
+              <div>ธนาคาร / Bank: ________________________</div>
+              <div>เลขที่บัญชี / Acc No.: ___________________</div>
+              <div>ชื่อบัญชี / Acc Name: {company.nameFullTH}</div>
+            </div>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 16px" }}>
+            {["ผู้จัดทำ / Prepared By", "ผู้อนุมัติ / Approved By"].map(label => (
+              <div key={label} style={{ textAlign: "center" }}>
+                <div style={{ borderBottom: "1px solid #111", marginBottom: 4, marginTop: 24 }} />
+                <div style={{ fontSize: 8.5, color: "#666" }}>{label}</div>
+                <div style={{ fontSize: 8, color: "#bbb", marginTop: 4 }}>วันที่: __________</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}>
+        <div style={{ height: 2, background: BK }} />
+        <div style={{ background: BK, padding: "6px 44px", display: "flex", justifyContent: "space-between" }}>
+          <span style={{ fontSize: 8, color: "#fff" }}>{company.nameFullEN} | Tax ID: {company.taxId}</span>
+          <span style={{ fontSize: 8, color: "#fff" }}>{company.web}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
