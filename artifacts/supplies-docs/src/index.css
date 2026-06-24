@@ -27,22 +27,40 @@
 
 :root {
   --background: 0 0% 96%;
-  --foreground: 220 15% 15%;
-  --border: 220 13% 85%;
-  --input: 220 13% 85%;
-  --ring: 220 80% 30%;
+  --foreground: 0 0% 8%;
+  --border: 0 0% 85%;
+  --input: 0 0% 85%;
+  --ring: 0 0% 8%;
   --card: 0 0% 100%;
-  --card-foreground: 220 15% 15%;
-  --primary: 220 80% 20%;
+  --card-foreground: 0 0% 8%;
+  --primary: 0 0% 0%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 220 10% 92%;
-  --secondary-foreground: 220 15% 20%;
-  --muted: 220 10% 92%;
-  --muted-foreground: 220 10% 45%;
-  --accent: 35 60% 50%;
-  --accent-foreground: 0 0% 100%;
-  --app-font-sans: 'Inter', 'Noto Sans Thai', sans-serif;
-  --radius: 0.5rem;
+  --secondary: 0 0% 90%;
+  --secondary-foreground: 0 0% 15%;
+  --muted: 0 0% 90%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 0% 90%;
+  --accent-foreground: 0 0% 15%;
+  --app-font-sans: 'Montserrat', 'Noto Sans Thai', 'Helvetica Neue', Arial, sans-serif;
+  --radius: 0.25rem;
+}
+
+.dark {
+  --background: 0 0% 8%;
+  --foreground: 0 0% 96%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 0 0% 90%;
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 96%;
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 8%;
+  --secondary: 0 0% 18%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 18%;
+  --muted-foreground: 0 0% 55%;
+  --accent: 0 0% 18%;
+  --accent-foreground: 0 0% 90%;
 }
 
 @layer base {
@@ -78,4 +96,21 @@
   box-shadow: 0 4px 24px rgba(0,0,0,0.14);
   position: relative;
   overflow: hidden;
+}
+
+/* Smart sidebar */
+.sidebar-collapsed { width: 56px; }
+.sidebar-expanded { width: 240px; }
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .doc-page {
+    width: 100%;
+    min-height: auto;
+    box-shadow: none;
+  }
+  .card-page {
+    width: 100%;
+    max-width: 340px;
+  }
 }
