@@ -17,7 +17,7 @@ export function ProposalCoverC() {
           <LogoC size={52} />
           <div>
             <div style={{ fontSize: 20, fontWeight: 800, color: NAVY, letterSpacing: "0.12em" }}>THE SUPPLIES</div>
-            <div style={{ fontSize: 9.5, color: RED, letterSpacing: "0.28em", fontWeight: 600 }}>ELEVATOR &amp; ESCALATOR</div>
+            <div style={{ fontSize: 9.5, color: RED, letterSpacing: "0.28em", fontWeight: 600 }}>COMPANY LIMITED</div>
           </div>
         </div>
         <div style={{ textAlign: "right", fontSize: 8.5, color: "#888", lineHeight: 1.9 }}>

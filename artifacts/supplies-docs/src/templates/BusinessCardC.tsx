@@ -41,7 +41,7 @@ export function BusinessCardCBack() {
         <LogoC size={50} />
         <div style={{ marginTop: 10, textAlign: "center" }}>
           <div style={{ fontSize: 13, fontWeight: 800, color: WH, letterSpacing: "0.14em" }}>THE SUPPLIES</div>
-          <div style={{ fontSize: 8, color: "rgba(255,255,255,0.5)", letterSpacing: "0.26em", marginTop: 3 }}>ELEVATOR &amp; ESCALATOR</div>
+          <div style={{ fontSize: 8, color: "rgba(255,255,255,0.5)", letterSpacing: "0.26em", marginTop: 3 }}>COMPANY LIMITED</div>
         </div>
         <div style={{ marginTop: 12, display: "flex", gap: 8 }}>
           {["SAFETY","RELIABILITY","EXCELLENCE"].map(v => (

@@ -16,7 +16,7 @@ export function ProposalCoverB() {
           <LogoB size={52} />
           <div>
             <div style={{ fontSize: 20, fontWeight: 800, color: WH, letterSpacing: "0.14em" }}>THE SUPPLIES</div>
-            <div style={{ fontSize: 10, color: GOLD, letterSpacing: "0.3em", marginTop: 2 }}>ELEVATOR &amp; ESCALATOR</div>
+            <div style={{ fontSize: 10, color: GOLD, letterSpacing: "0.3em", marginTop: 2 }}>COMPANY LIMITED</div>
           </div>
         </div>
         <div style={{ width: 48, height: 2, background: GOLD, marginBottom: 18 }} />

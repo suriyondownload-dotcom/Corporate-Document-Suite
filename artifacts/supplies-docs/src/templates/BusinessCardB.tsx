@@ -36,7 +36,7 @@ export function BusinessCardBBack() {
         <div style={{ marginTop: 12, textAlign: "center" }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: WH, letterSpacing: "0.16em" }}>THE SUPPLIES</div>
           <div style={{ width: 40, height: 1.5, background: GOLD, margin: "6px auto" }} />
-          <div style={{ fontSize: 8, color: "rgba(255,255,255,0.5)", letterSpacing: "0.28em" }}>ELEVATOR &amp; ESCALATOR</div>
+          <div style={{ fontSize: 8, color: "rgba(255,255,255,0.5)", letterSpacing: "0.28em" }}>COMPANY LIMITED</div>
         </div>
         <div style={{ marginTop: 14, display: "flex", gap: 12 }}>
           {["SAFETY","RELIABILITY","EXCELLENCE"].map(v => (

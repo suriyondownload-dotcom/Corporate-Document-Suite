@@ -19,11 +19,11 @@ export function LogoBHorizontal({ height = 40 }: { height?: number }) {
       <LogoB size={height} />
       <div style={{ width: 1, height: height * 0.8, background: GOLD, opacity: 0.7 }} />
       <div>
-        <div style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", fontWeight: 700, fontSize: height * 0.45, letterSpacing: "0.12em", color: NAVY, lineHeight: 1.1 }}>
+        <div style={{ fontFamily: "'Montserrat', 'Helvetica Neue', Arial, sans-serif", fontWeight: 600, fontSize: height * 0.42, letterSpacing: "0.16em", color: NAVY, lineHeight: 1.1 }}>
           THE SUPPLIES
         </div>
-        <div style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", fontWeight: 300, fontSize: height * 0.22, letterSpacing: "0.25em", color: GOLD, lineHeight: 1.2, marginTop: 1 }}>
-          ELEVATOR &amp; ESCALATOR
+        <div style={{ fontFamily: "'Montserrat', 'Helvetica Neue', Arial, sans-serif", fontWeight: 400, fontSize: height * 0.19, letterSpacing: "0.26em", color: GOLD, lineHeight: 1.2, marginTop: 2 }}>
+          COMPANY LIMITED
         </div>
       </div>
     </div>

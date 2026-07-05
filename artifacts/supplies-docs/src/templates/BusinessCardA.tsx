@@ -32,7 +32,7 @@ export function BusinessCardABack() {
         <LogoA size={52} color={WH} />
         <div style={{ textAlign: "center", marginTop: 6 }}>
           <div style={{ fontSize: 14, fontWeight: 700, color: WH, letterSpacing: "0.16em" }}>THE SUPPLIES</div>
-          <div style={{ fontSize: 8.5, color: "rgba(255,255,255,0.55)", letterSpacing: "0.28em", marginTop: 2 }}>ELEVATOR &amp; ESCALATOR</div>
+          <div style={{ fontSize: 8.5, color: "rgba(255,255,255,0.55)", letterSpacing: "0.28em", marginTop: 2 }}>COMPANY LIMITED</div>
         </div>
         <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
           {["SAFETY","RELIABILITY","EXCELLENCE"].map(v => (

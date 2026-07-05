@@ -19,11 +19,11 @@ export function LogoCHorizontal({ height = 40 }: { height?: number }) {
       <LogoC size={height} />
       <div style={{ width: 1.5, height: height * 0.85, background: RED }} />
       <div>
-        <div style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", fontWeight: 800, fontSize: height * 0.45, letterSpacing: "0.1em", color: NAVY, lineHeight: 1.1 }}>
+        <div style={{ fontFamily: "'Montserrat', 'Helvetica Neue', Arial, sans-serif", fontWeight: 700, fontSize: height * 0.42, letterSpacing: "0.14em", color: NAVY, lineHeight: 1.1 }}>
           THE SUPPLIES
         </div>
-        <div style={{ fontFamily: "'Helvetica Neue', Arial, sans-serif", fontWeight: 400, fontSize: height * 0.22, letterSpacing: "0.22em", color: RED, lineHeight: 1.2, marginTop: 1 }}>
-          ELEVATOR &amp; ESCALATOR
+        <div style={{ fontFamily: "'Montserrat', 'Helvetica Neue', Arial, sans-serif", fontWeight: 400, fontSize: height * 0.19, letterSpacing: "0.24em", color: RED, lineHeight: 1.2, marginTop: 2 }}>
+          COMPANY LIMITED
         </div>
       </div>
     </div>

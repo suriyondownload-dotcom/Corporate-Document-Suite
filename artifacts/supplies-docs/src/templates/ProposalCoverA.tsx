@@ -62,7 +62,7 @@ export function ProposalCoverA() {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div>
               <div style={{ fontSize: 12, fontWeight: 700, color: BK, letterSpacing: "0.1em" }}>THE SUPPLIES</div>
-              <div style={{ fontSize: 8.5, color: "#aaa", letterSpacing: "0.2em" }}>ELEVATOR &amp; ESCALATOR</div>
+              <div style={{ fontSize: 8.5, color: "#aaa", letterSpacing: "0.2em" }}>COMPANY LIMITED</div>
             </div>
             <div style={{ textAlign: "right", fontSize: 8.5, color: "#aaa", lineHeight: 1.7 }}>
               <div>{company.nameFullTH}</div>

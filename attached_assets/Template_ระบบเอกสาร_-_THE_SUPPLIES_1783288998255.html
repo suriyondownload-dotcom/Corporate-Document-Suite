@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="th">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Template ระบบเอกสาร - THE SUPPLIES</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap');
+  body { font-family: 'Sarabun', sans-serif; margin:0; background:#fafafa; color:#111; }
+  .container { max-width:1200px; margin:0 auto; padding:24px; background:white; }
+  header { display:flex; align-items:center; border-bottom:2px solid #000; padding-bottom:12px; margin-bottom:20px; }
+  header img { height:70px; }
+  .company { margin-left:20px; }
+  .company h1 { margin:0; font-size:22px; letter-spacing:1px; font-weight:600; }
+  .company p { margin:2px 0 0; font-size:14px; }
+  h2 { font-size:18px; margin:24px 0 12px; font-weight:600; }
+  .toolbar { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+  button { padding:8px 14px; border:1px solid #000; background:white; cursor:pointer; font-family:inherit; }
+  button:hover { background:#000; color:white; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th, td { border:1px solid #ccc; padding:6px 8px; text-align:left; }
+  th { background:#f0f0f0; font-weight:600; }
+  tr.dept td { background:#e8e8e8; font-weight:600; }
+  td[contenteditable="true"]:focus { outline:2px solid #000; background:#fffbe6; }
+  .template-page { margin-top:60px; page-break-before:always; }
+  .doc-header { display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #000; padding-bottom:8px; }
+  .doc-header img { height:50px; }
+  .footer { text-align:center; margin-top:40px; font-size:12px; color:#666; border-top:1px solid #ddd; padding-top:10px; }
+  @media print {
+    .toolbar { display:none; }
+    body { background:white; }
+    .container { padding:0; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <img src="data:image/jpeg;base64,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KAD/AAooooAKKKPSgAo9KKPSgBB2pR2pB2pfSgAooooABSUtHagAooooAT/GlpP8aWgA9KT0paT0oAB2paQdqUUAAooFFAB6UUelFACUtFFACUtFFABRRRQAf40n+NL/AI0n+NAC0UUUAH+NFH+NFACUtFFABRRRQAUUUUAFFFFABRRRQAUUf40UAFFFFACGlNIaU0AFFFFAB60GiigAooooAPWig0UAFFFFABRRRQAUUUUAFFFHpQAUelFHpQAg7UvpR6UelABRR6UUAAoFHpRQAUUUUAJ/jS0n+NLQAUnpS0npQADtS0g7UooABRQKKAD0oo9KKACiiigAopKWgAoo/wAaKAD/ABpP8aX/ABpP8aAFooooAP8AGij/ABooAKKBRQAUUUUAFFFFABRRRQAUUUUAH+NFH+NFABRQaKAA0etHrRQAUUUUAFFFFABRRRQAGilpKACiiigAooooAKKKKACiiigAo9KKPSgAooooAKPSiigA9KKPSigAooooAT/GloooAKT0paT0oAB2paQdqWgAFFAooAPSij0ooAKKKKAE9KWk9KWgA/xoo/xooAP8aT/Gl/xpP8aAFooooABRR/jRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAHrRRRQAUUUUAFFFFABRRRQAUUUtACUUUUAFFFFABRRRQAUUUUAFHpRRQAUCiigAooooAKKKKACiiigBP8aWiigApPSlpPSgAHalpB2paAAUUCigA9KKKKACk9KWk9KAD0o9KPSj/GgBf8aP8AGj/Gj/GgApP8aWk/xoAWiiigAooooAKKKKAClpKWgCjHd77+ax24MUaSbs9d5YY/8dq9WLb/APIwXn/XvB/6FJW1QAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUtACUUUUAFFFFABRRRQAUUUUAFFFFABRRS0AJRRRQAUUUUAFFFFABRRRQAUUUUAJ/jS0f40UAFJ6UtJ6UAA7UtIO1LQACigUUAHpRR6UUAFJ6UtJ6UAHpS0UUAH+NH+NFGKACj/ABooxQAUUUUAFFFFABRRRQAUtJS0AYtv/wAjBd/9e8H/AKFJW1WLb/8AIfu/+veD/wBCkraoASiiigAooooAKKKKACilooASilpKACiiloASiiigBaSlpKAFpKWigBKWkpaACiiigApKKKAFpKWkoAKK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WtpHNCynOJnVn+ZRnHJIJJGcjjvn1bFJgYxQADpRS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFJ6UtJ6UAA7UopB2pR2oAKKKKAD0oo9KKACj0oo9KAD0opPSloAKP8aKP8aACiiigAooooAKKKKACiiigApaSloAxoP8AkP3f/XvB/wChSVs1iwf8h+7/AOveD/0KStqgApKWkoAWikooAWikooAWikooAWiikoAWikooAWikooAWikooAWiiigAopKWgAopKWgAopKWgApKKKACiiigAooooAKKKKACiiigAooooAKKKKACk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKT0paQdqAFo/xo9KKAD/ABopP8aWgA/xoo/xo/xoAKKKKACiiigA9KPSiigApaSigCjHaNHqM18WGJY40A7goWP/ALNV+kooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiij0oAKKKKAD0oo9KKACiiigAooooAKKKKACk9KWk9KAAdqX0pB2pR2oABRQKKAD0oo9KKAAUelFFABRRRQAUUUUAH+NJ/jS/40n+NAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUelFHpQAUUCigA9KKPSigAooooAKT/GlooAT/ABpaT/GloAPSk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKKKKAD0ooooAKKKKAD/ABpP8aX/ABpP8aAFooooAKKKKACiiigAoo9KBQAUUUUAFFFFABRRRQAUUUUAFFFFABRR60UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUelFHpQACj0pB2pR2oAPSij0o9KACiiigAooooAT/ABpaT/GloAPSk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKKKPSgAooooAKKKKAD/ABoo/wAaT/GgBaP8aKKACiiigA9KKKKACj0oooAKKKKACiiigAooooAKKP8AGigAooooAD3oNB70GgAooooAKKKKACiiigANFBooAKKKKACiiigAooooAKKKKACj0oFHpQAg7Uo7Ug7UvpQAelFFFABRRRQAf40UUUAJ/jS0n+NLQAelJ6UvpSelAAO1HpQO1KO1AAKKBRQACij0ooAKKKKACiiigAooooAP8aT/ABpf8aT/ABoAWiiigAo9KKPSgAooooAKKKKACiiigAooooAKKKKAD/Gij/GigAooooADQaPWg0AFFFFABRR60etABQaD3o/woAKP8KKKACiiigAooooAKKP8KKACj0ooFAB6UelFFACDtS+lFHpQAnpS0UUAFFFAoAKKKP8AGgBP8aWk/wAaWgA9KT0paKAEHalHagUUAFFFFAAKKKKACiiigAooooAKKKKACiiigAooooAKPSiigAooooAKKKKACiiigAooooAKKKKAD/GiiigAooNFAAaDRQaACg96KKAD1ooooAD3oo9aKAA0UUUAFFFFABRRRQAUUUUAFHpRRQAUelFHpQAUCiigAoopKAFooooAKP8AGiigAopP8aWgAopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAP//Z" alt="logo">
+    <div class="company">
+      <h1>THE SUPPLIES COMPANY LIMITED</h1>
+      <p>บริษัท เดอะ ซัพพลายส์ จำกัด</p>
+    </div>
+  </header>
+
+  <h2>MASTER DOCUMENT LIST - ระบบเอกสารเต็มรูปแบบ</h2>
+  <div class="toolbar">
+    <button onclick="addRow()">เพิ่มแถว</button>
+    <button onclick="deleteRow()">ลบแถวที่เลือก</button>
+    <button onclick="window.print()">พิมพ์</button>
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <table id="docTable">
+    <thead>
+      <tr>
+        <th>ลำดับ</th><th>รหัสเอกสาร</th><th>ชื่อเอกสาร</th><th>ประเภท</th><th>แผนก</th>
+        <th>ฉบับที่</th><th>วันที่บังคับใช้</th><th>ผู้จัดทำ</th><th>ผู้อนุมัติ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="dept"><td colspan="9">สำนักบริหาร</td></tr>
+<tr>
+<td>1</td>
+<td contenteditable="true">สำ-QP-001</td>
+<td contenteditable="true">นโยบายคุณภาพ</td>
+<td contenteditable="true">นโยบาย</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>2</td>
+<td contenteditable="true">สำ-QP-002</td>
+<td contenteditable="true">นโยบายสิ่งแวดล้อม</td>
+<td contenteditable="true">นโยบาย</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>3</td>
+<td contenteditable="true">สำ-QP-003</td>
+<td contenteditable="true">นโยบายความปลอดภัย</td>
+<td contenteditable="true">นโยบาย</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>4</td>
+<td contenteditable="true">สำ-QP-004</td>
+<td contenteditable="true">คู่มือระบบบริหารคุณภาพ</td>
+<td contenteditable="true">คู่มือ</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>5</td>
+<td contenteditable="true">สำ-QP-005</td>
+<td contenteditable="true">ระเบียบการทบทวนฝ่ายบริหาร</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>6</td>
+<td contenteditable="true">สำ-QP-006</td>
+<td contenteditable="true">ระเบียบการบริหารความเสี่ยงองค์กร</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>7</td>
+<td contenteditable="true">สำ-QP-007</td>
+<td contenteditable="true">ระเบียบการจัดการเป้าหมาย KPI</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">สำนักบริหาร</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายทรัพยากรบุคคล (HR)</td></tr>
+<tr>
+<td>8</td>
+<td contenteditable="true">ฝ่-QP-008</td>
+<td contenteditable="true">ระเบียบการสรรหาและคัดเลือก</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>9</td>
+<td contenteditable="true">ฝ่-QP-009</td>
+<td contenteditable="true">ระเบียบการปฐมนิเทศ</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>10</td>
+<td contenteditable="true">ฝ่-QP-010</td>
+<td contenteditable="true">ระเบียบการฝึกอบรม</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>11</td>
+<td contenteditable="true">ฝ่-QP-011</td>
+<td contenteditable="true">ระเบียบการประเมินผลงาน</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>12</td>
+<td contenteditable="true">ฝ่-FM-012</td>
+<td contenteditable="true">ใบสมัครงาน</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>13</td>
+<td contenteditable="true">ฝ่-FM-013</td>
+<td contenteditable="true">ใบขออนุมัติจ้าง</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>14</td>
+<td contenteditable="true">ฝ่-FM-014</td>
+<td contenteditable="true">แผนฝึกอบรมประจำปี</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>15</td>
+<td contenteditable="true">ฝ่-FM-015</td>
+<td contenteditable="true">แบบประเมินทดลองงาน</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>16</td>
+<td contenteditable="true">ฝ่-FM-016</td>
+<td contenteditable="true">แบบประเมิน KPI รายบุคคล</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>17</td>
+<td contenteditable="true">ฝ่-FM-017</td>
+<td contenteditable="true">ใบลา</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>18</td>
+<td contenteditable="true">ฝ่-FM-018</td>
+<td contenteditable="true">ใบ OT</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายทรัพยากรบุคคล (HR)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายบัญชีและการเงิน</td></tr>
+<tr>
+<td>19</td>
+<td contenteditable="true">ฝ่-QP-019</td>
+<td contenteditable="true">ระเบียบการรับ-จ่ายเงิน</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>20</td>
+<td contenteditable="true">ฝ่-QP-020</td>
+<td contenteditable="true">ระเบียบการปิดงบ</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>21</td>
+<td contenteditable="true">ฝ่-FM-021</td>
+<td contenteditable="true">ใบสำคัญรับ</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>22</td>
+<td contenteditable="true">ฝ่-FM-022</td>
+<td contenteditable="true">ใบสำคัญจ่าย</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>23</td>
+<td contenteditable="true">ฝ่-FM-023</td>
+<td contenteditable="true">ใบขอเบิกเงิน</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>24</td>
+<td contenteditable="true">ฝ่-FM-024</td>
+<td contenteditable="true">ใบวางบิล</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>25</td>
+<td contenteditable="true">ฝ่-FM-025</td>
+<td contenteditable="true">ใบแจ้งหนี้</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>26</td>
+<td contenteditable="true">ฝ่-FM-026</td>
+<td contenteditable="true">งบกระทบยอดธนาคาร</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบัญชีและการเงิน</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายจัดซื้อ</td></tr>
+<tr>
+<td>27</td>
+<td contenteditable="true">ฝ่-QP-027</td>
+<td contenteditable="true">ระเบียบการคัดเลือกผู้ขาย</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>28</td>
+<td contenteditable="true">ฝ่-QP-028</td>
+<td contenteditable="true">ระเบียบการออก PO</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>29</td>
+<td contenteditable="true">ฝ่-FM-029</td>
+<td contenteditable="true">ใบขอซื้อ PR</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>30</td>
+<td contenteditable="true">ฝ่-FM-030</td>
+<td contenteditable="true">ใบสั่งซื้อ PO</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>31</td>
+<td contenteditable="true">ฝ่-FM-031</td>
+<td contenteditable="true">ใบเปรียบเทียบราคา</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>32</td>
+<td contenteditable="true">ฝ่-FM-032</td>
+<td contenteditable="true">ทะเบียนผู้ขายอนุมัติ AVL</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>33</td>
+<td contenteditable="true">ฝ่-FM-033</td>
+<td contenteditable="true">แบบประเมินผู้ขายรายไตรมาส</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายจัดซื้อ</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายคลังสินค้า</td></tr>
+<tr>
+<td>34</td>
+<td contenteditable="true">ฝ่-QP-034</td>
+<td contenteditable="true">ระเบียบการรับเข้า</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>35</td>
+<td contenteditable="true">ฝ่-QP-035</td>
+<td contenteditable="true">ระเบียบการจัดเก็บ</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>36</td>
+<td contenteditable="true">ฝ่-FM-036</td>
+<td contenteditable="true">ใบรับสินค้า</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>37</td>
+<td contenteditable="true">ฝ่-FM-037</td>
+<td contenteditable="true">ใบเบิกวัสดุ</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>38</td>
+<td contenteditable="true">ฝ่-FM-038</td>
+<td contenteditable="true">Stock Card</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>39</td>
+<td contenteditable="true">ฝ่-FM-039</td>
+<td contenteditable="true">ใบตรวจนับประจำปี</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายคลังสินค้า</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายผลิต</td></tr>
+<tr>
+<td>40</td>
+<td contenteditable="true">ฝ่-QP-040</td>
+<td contenteditable="true">ระเบียบแผนการผลิต</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>41</td>
+<td contenteditable="true">ฝ่-QP-041</td>
+<td contenteditable="true">ระเบียบการควบคุมกระบวนการ</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>42</td>
+<td contenteditable="true">ฝ่-FM-042</td>
+<td contenteditable="true">ใบสั่งผลิต</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>43</td>
+<td contenteditable="true">ฝ่-FM-043</td>
+<td contenteditable="true">ใบรายงานการผลิตประจำวัน</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>44</td>
+<td contenteditable="true">ฝ่-FM-044</td>
+<td contenteditable="true">ใบตรวจสอบระหว่างผลิต IPQC</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>45</td>
+<td contenteditable="true">ฝ่-FM-045</td>
+<td contenteditable="true">ใบแจ้งของเสีย</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายผลิต</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายควบคุมคุณภาพ (QA/QC)</td></tr>
+<tr>
+<td>46</td>
+<td contenteditable="true">ฝ่-QP-046</td>
+<td contenteditable="true">ระเบียบการตรวจรับวัตถุดิบ</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>47</td>
+<td contenteditable="true">ฝ่-QP-047</td>
+<td contenteditable="true">ระเบียบการจัดการสินค้าไม่สอดคล้อง</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>48</td>
+<td contenteditable="true">ฝ่-FM-048</td>
+<td contenteditable="true">ใบตรวจสอบ IQC/OQC</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>49</td>
+<td contenteditable="true">ฝ่-FM-049</td>
+<td contenteditable="true">ใบ NCR</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>50</td>
+<td contenteditable="true">ฝ่-FM-050</td>
+<td contenteditable="true">ใบ CAR/PAR</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>51</td>
+<td contenteditable="true">ฝ่-FM-051</td>
+<td contenteditable="true">ทะเบียนเครื่องมือวัด</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายควบคุมคุณภาพ (QA/QC)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายวิศวกรรมและซ่อมบำรุง</td></tr>
+<tr>
+<td>52</td>
+<td contenteditable="true">ฝ่-QP-052</td>
+<td contenteditable="true">ระเบียบการบำรุงรักษาเชิงป้องกัน PM</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายวิศวกรรมและซ่อมบำรุง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>53</td>
+<td contenteditable="true">ฝ่-FM-053</td>
+<td contenteditable="true">แผน PM ประจำปี</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายวิศวกรรมและซ่อมบำรุง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>54</td>
+<td contenteditable="true">ฝ่-FM-054</td>
+<td contenteditable="true">ใบแจ้งซ่อม</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายวิศวกรรมและซ่อมบำรุง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>55</td>
+<td contenteditable="true">ฝ่-FM-055</td>
+<td contenteditable="true">ประวัติเครื่องจักร</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายวิศวกรรมและซ่อมบำรุง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายขายและการตลาด</td></tr>
+<tr>
+<td>56</td>
+<td contenteditable="true">ฝ่-QP-056</td>
+<td contenteditable="true">ระเบียบการเปิดลูกค้าใหม่</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>57</td>
+<td contenteditable="true">ฝ่-QP-057</td>
+<td contenteditable="true">ระเบียบการเสนอราคา</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>58</td>
+<td contenteditable="true">ฝ่-FM-058</td>
+<td contenteditable="true">ใบเสนอราคา</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>59</td>
+<td contenteditable="true">ฝ่-FM-059</td>
+<td contenteditable="true">ใบสั่งขาย SO</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>60</td>
+<td contenteditable="true">ฝ่-FM-060</td>
+<td contenteditable="true">ทะเบียนลูกค้า</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>61</td>
+<td contenteditable="true">ฝ่-FM-061</td>
+<td contenteditable="true">แบบสำรวจความพึงพอใจ</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายขายและการตลาด</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายบริการลูกค้า/CRM</td></tr>
+<tr>
+<td>62</td>
+<td contenteditable="true">ฝ่-QP-062</td>
+<td contenteditable="true">ระเบียบการรับเรื่องร้องเรียน</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายบริการลูกค้า/CRM</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>63</td>
+<td contenteditable="true">ฝ่-FM-063</td>
+<td contenteditable="true">ใบรับเรื่องร้องเรียน</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบริการลูกค้า/CRM</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>64</td>
+<td contenteditable="true">ฝ่-FM-064</td>
+<td contenteditable="true">ใบเคลม</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบริการลูกค้า/CRM</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>65</td>
+<td contenteditable="true">ฝ่-FM-065</td>
+<td contenteditable="true">ใบ RMA</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายบริการลูกค้า/CRM</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายโลจิสติกส์และจัดส่ง</td></tr>
+<tr>
+<td>66</td>
+<td contenteditable="true">ฝ่-QP-066</td>
+<td contenteditable="true">ระเบียบการวางแผนขนส่ง</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายโลจิสติกส์และจัดส่ง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>67</td>
+<td contenteditable="true">ฝ่-FM-067</td>
+<td contenteditable="true">ใบจัดส่ง</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายโลจิสติกส์และจัดส่ง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>68</td>
+<td contenteditable="true">ฝ่-FM-068</td>
+<td contenteditable="true">ใบนำส่งสินค้า</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายโลจิสติกส์และจัดส่ง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>69</td>
+<td contenteditable="true">ฝ่-FM-069</td>
+<td contenteditable="true">POD</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายโลจิสติกส์และจัดส่ง</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td></tr>
+<tr>
+<td>70</td>
+<td contenteditable="true">ฝ่-QP-070</td>
+<td contenteditable="true">ระเบียบการควบคุมการเข้าถึง</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>71</td>
+<td contenteditable="true">ฝ่-QP-071</td>
+<td contenteditable="true">ระเบียบการสำรองข้อมูล</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>72</td>
+<td contenteditable="true">ฝ่-FM-072</td>
+<td contenteditable="true">ใบขอ User ใหม่</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>73</td>
+<td contenteditable="true">ฝ่-FM-073</td>
+<td contenteditable="true">ใบแจ้งปัญหา IT</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>74</td>
+<td contenteditable="true">ฝ่-FM-074</td>
+<td contenteditable="true">Log การ Backup</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายเทคโนโลยีสารสนเทศ (IT)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td></tr>
+<tr>
+<td>75</td>
+<td contenteditable="true">ฝ่-QP-075</td>
+<td contenteditable="true">ระเบียบ JSA</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>76</td>
+<td contenteditable="true">ฝ่-QP-076</td>
+<td contenteditable="true">ระเบียบการทำงานที่สูง</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>77</td>
+<td contenteditable="true">ฝ่-FM-077</td>
+<td contenteditable="true">ใบอนุญาตทำงาน Work Permit</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>78</td>
+<td contenteditable="true">ฝ่-FM-078</td>
+<td contenteditable="true">ใบตรวจสอบ PPE</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>79</td>
+<td contenteditable="true">ฝ่-FM-079</td>
+<td contenteditable="true">ใบรายงานอุบัติเหตุ</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>80</td>
+<td contenteditable="true">ฝ่-FM-080</td>
+<td contenteditable="true">SDS สารเคมี</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายความปลอดภัย อาชีวอนามัย และสิ่งแวดล้อม (SHE)</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่ายกฎหมายและกำกับดูแล</td></tr>
+<tr>
+<td>81</td>
+<td contenteditable="true">ฝ่-QP-081</td>
+<td contenteditable="true">นโยบายคุ้มครองข้อมูลส่วนบุคคล PDPA</td>
+<td contenteditable="true">นโยบาย</td>
+<td contenteditable="true">ฝ่ายกฎหมายและกำกับดูแล</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>82</td>
+<td contenteditable="true">ฝ่-QP-082</td>
+<td contenteditable="true">นโยบายต่อต้านคอร์รัปชัน</td>
+<td contenteditable="true">นโยบาย</td>
+<td contenteditable="true">ฝ่ายกฎหมายและกำกับดูแล</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>83</td>
+<td contenteditable="true">ฝ่-FM-083</td>
+<td contenteditable="true">สัญญา NDA</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่ายกฎหมายและกำกับดูแล</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr class="dept"><td colspan="9">ฝ่าย R&D</td></tr>
+<tr>
+<td>84</td>
+<td contenteditable="true">ฝ่-QP-084</td>
+<td contenteditable="true">ระเบียบการออกแบบและพัฒนา</td>
+<td contenteditable="true">ระเบียบ</td>
+<td contenteditable="true">ฝ่าย R&D</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>85</td>
+<td contenteditable="true">ฝ่-FM-085</td>
+<td contenteditable="true">ใบขอพัฒนาผลิตภัณฑ์ใหม่</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่าย R&D</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>86</td>
+<td contenteditable="true">ฝ่-FM-086</td>
+<td contenteditable="true">BOM</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่าย R&D</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr><tr>
+<td>87</td>
+<td contenteditable="true">ฝ่-FM-087</td>
+<td contenteditable="true">รายงานทดลอง</td>
+<td contenteditable="true">ฟอร์ม</td>
+<td contenteditable="true">ฝ่าย R&D</td>
+<td contenteditable="true">01</td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+<td contenteditable="true"></td>
+</tr>
+    </tbody>
+  </table>
+
+  <div class="template-page">
+    <h2>แม่แบบเอกสารมาตรฐาน</h2>
+    <div class="doc-header">
+      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIbGNtcwIQAABtbnRyUkdCIFhZWiAH4gADABQACQAOAB1hY3NwTVNGVAAAAABzYXdzY3RybAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWhhbmSdkQA9QICwPUB0LIGepSKOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAABxjcHJ0AAABDAAAAAx3dHB0AAABGAAAABRyWFlaAAABLAAAABRnWFlaAAABQAAAABRiWFlaAAABVAAAABRyVFJDAAABaAAAAGBnVFJDAAABaAAAAGBiVFJDAAABaAAAAGBkZXNjAAAAAAAAAAV1UkdCAAAAAAAAAAAAAAAAdGV4dAAAAABDQzAAWFlaIAAAAAAAAPNUAAEAAAABFslYWVogAAAAAAAAb6AAADjyAAADj1hZWiAAAAAAAABilgAAt4kAABjaWFlaIAAAAAAAACSgAAAPhQAAtsRjdXJ2AAAAAAAAACoAAAB8APgBnAJ1A4MEyQZOCBIKGAxiDvQRzxT2GGocLiBDJKwpai5+M+s5sz/WRldNNlR2XBdkHWyGdVZ+jYgskjacq6eMstu+mcrH12Xkd/H5////2wBDAAcHBwcHBwwHBwwRDAwMERcRERERFx4XFxcXFx4kHh4eHh4eJCQkJCQkJCQrKysrKysyMjIyMjg4ODg4ODg4ODj/2wBDAQkJCQ4NDhkNDRk7KCEoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAGMAgADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6PoopBQAtFA7UCgAooooAKKPSigAooooAKKKKACiiigAooooAKKKKACiiigAooFFABRRRQAUUUUAFFFFABRRRQAUUf40UAFFFFABRSGlNABRR60UAFFHrRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRQO1ABRRR6UAFFIO1LQAUUUUAFFFFABRRRQAUUUUAHpSelL6UnpQADtS0g7Uo7UAAooFFAB6UUCgUAFA7UUelABRSelLQAUUUf40AH+NFH+NJ/jQAtFFFAB/jRR/jQKACiik9KAFoFFHpQACiiigApP8AGl/xpP8AGgBaKKKAD/Gik/xpaAA96DR60etAAe9Ie9Ke9Ie9ACmg9/pR60Hv9KAA96PWj1oPegBPWlo/wo/woAKD/Sj/AAo/woAT/CloooAKT/ClooAKKKKAD0o9KBR6UAApB2pR2pB2oAB2pfSkHal9KACik9KWgAooooAKKKKAE/xpaT/GloAPSk9KX0pPSgAHalHakHalHagAFFAooAKKKKAAUelFA7UAJ6UtJ6UtAB/jRRRQAf40n+NL/jSf40ALRRRQAf40Uf40UAFJ6UtJQAtFFAoAKKKKACk/xpaKACk/xpaKAE/xpf8AGk/xpaACg0UGgAPej1oPej1oAPWg96D3ooAPWj1o9aD3oAT1paKKACg/0oooAKKKKACiiigAooooABR6UelHpQADtR6UCj0oAQdqX0pB2pfSgBPSlpKWgApKUUn+NAC0UUUAJ/jS0n+NLQAelJ6UvpSelAAO1KO1IO1KKAAUUCigAFFHpRQAlL6UUUAJ6UtJ6UtABRRRQAf40n+NL/jSf40ALRRRQAf40Uf40UAJSiiigAooooAKKKKACiiigAooooAKKKKACiiigANB70Gg0AHrQe9FFAAe9HrR60UAFBo9aKAA0f4UGigAooooAKKKKAD/AAooooAKKKPSgAo9KKPSgBB2pR2pB2pfSgAooooABSUtHagAooooAT/GlpP8aWgA9KT0paT0oAB2paQdqUUAAooFFAB6UUelFACUtFFACUtFFABRRRQAf40n+NL/AI0n+NAC0UUUAH+NFH+NFACUtFFABRRRQAUUUUAFFFFABRRRQAUUf40UAFFFFACGlNIaU0AFFFFAB60GiigAooooAPWig0UAFFFFABRRRQAUUUUAFFFHpQAUelFHpQAg7UvpR6UelABRR6UUAAoFHpRQAUUUUAJ/jS0n+NLQAUnpS0npQADtS0g7UooABRQKKAD0oo9KKACiiigAopKWgAoo/wAaKAD/ABpP8aX/ABpP8aAFooooAP8AGij/ABooAKKBRQAUUUUAFFFFABRRRQAUUUUAH+NFH+NFABRQaKAA0etHrRQAUUUUAFFFFABRRRQAGilpKACiiigAooooAKKKKACiiigAo9KKPSgAooooAKPSiigA9KKPSigAooooAT/GloooAKT0paT0oAB2paQdqWgAFFAooAPSij0ooAKKKKAE9KWk9KWgA/xoo/xooAP8aT/Gl/xpP8aAFooooABRR/jRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAHrRRRQAUUUUAFFFFABRRRQAUUUtACUUUUAFFFFABRRRQAUUUUAFHpRRQAUCiigAooooAKKKKACiiigBP8aWiigApPSlpPSgAHalpB2paAAUUCigA9KKKKACk9KWk9KAD0o9KPSj/GgBf8aP8AGj/Gj/GgApP8aWk/xoAWiiigAooooAKKKKAClpKWgCjHd77+ax24MUaSbs9d5YY/8dq9WLb/APIwXn/XvB/6FJW1QAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFLSUtACUUUUAFFFFABRRRQAUUUUAFFFFABRRS0AJRRRQAUUUUAFFFFABRRRQAUUUUAJ/jS0f40UAFJ6UtJ6UAA7UtIO1LQACigUUAHpRR6UUAFJ6UtJ6UAHpS0UUAH+NH+NFGKACj/ABooxQAUUUUAFFFFABRRRQAUtJS0AYtv/wAjBd/9e8H/AKFJW1WLb/8AIfu/+veD/wBCkraoASiiigAooooAKKKKACilooASilpKACiiloASiiigBaSlpKAFpKWigBKWkpaACiiigApKKKAFpKWkoAKKKKACiiigAooooAKKKKACiiigAooooAKT0pfSk9KAAdqWkHaloABRQKKAD0oo9KKACj0ooFABRTWYL7k9qTaW5f8ALtQAb8/cGf5UYkPUgfSpKWgCPyx3JP40eWn+TUlJQAzy17E/nSbXH3W/OpaKAIt7D7w/Ec08EEZHNOqIpzuXg0APopivztfg/wA6koASloooAxrf/kP3f/XCD/0KStmsa3/5D93/ANcIP/QpK0rmf7NbSXGxpPLUttQZY4GcAepoAnoryy7+KdpYQNdXuj6nDEv3neHao7ckmrFr8SYrvy2h0XUykuNr+R8uG6HOelAHpdFc5oniex12+1CwtEkV9Ol8mUuAAW56YPTiujoAKK4z/hOtDjvtUsrlnh/slVaeRx8uG6bcEk/lWPB8TLS8CyWOk6lNE5+WRYPlIPcHPSgD0uikByM0tACUtRTTRW8LzzsESMFmY8AAckmvOrf4madfPnS9O1C7hLbRNFCTGecZBJ6UAelUUgORmubsPFFhqPiC98OQpILiwVWkZgNp3Yxg5z3oA6WiiuF1Dx/o+m3mp2M0cxfSoVmm2gYKsQBt56/NQB3VFeZQfEyC5hS4t9G1SSOQblZYMgg9CDmiT4o6ZabX1TTtQsoSQDLNAQgz6nNAHptFee6p8RdL0/VF0i3tLq+leFZ1+zIHBR+h6g1CfiNj/mBar/4D/wD16APSKK89s/iToF3a30xSeCbT4jLNbypsl2juATg/nXYaRqcGs6Zb6rahliuYxIobggH1oA0qKK5D/hNdGTV9Q0icvE+mRCaeRwNgU4PBzk9fSgDr6K8yi+J9jdqJdO0vUrqFjhZY4Plb3BzXpSNvRXwRkA4PUZoAfRXnt/8AEfSbXUptKsLW71Ga3O2X7LFvVG9Ccjmuy0u//tOwivvJlt/NGfLmXa6845HagDQpKWigBKKKKACiiigAooooAKKKKACiiigA9KT0paT0oAB2pRSDtSjtQACigUUAHpSUvpRQAU1jtHHU9BTugyaYgJO89+nsKAFVccnkmn0tJQAcUcUUtABSUteQat8ZfD2j6rcaRPbXLyW8hiYqF2kg44y3SgD17ijio4pBLEso6OAw/GpKAFpKWkoAayhhg01SQdjdex9akprLuGPyoAdRTVbI569DTqAMW3/5D93/ANe8H/oUlbXFYsH/ACH7v/r3g/8AQpK26APOfix/yIWo/SP/ANDWup8Mf8i5pv8A16w/+gCqvjDQZfE3h260SGUQtcBQHYZA2sD0H0rW0qzbTtMtbB2Dm3hSIsOAdoAzQB4P4b1HxPY+KvEy+HtNS/Vr0mQtKI9pBbHXrmu6/wCEh+JX/Quw/wDgStbXhnwtNoGq6xqMkyyjU7jzlUDBQc8H1612lAHyJqk+oXK+Mp9UgFtcsLbzIg24KfMHGR1r1rR9c+JCaVaJb6DA8awxhG+0AZXaMHHbitGf4cJfahr899cAw6yqBVQYaMpgg5PB5FR2vhn4jWFvHZWmvwNDCoRN9uC21eACc+lAGlp+s/EGa9hi1DRIILdnAkkW4DFV7kDvXoVef2Gk/EKG9hl1DWbaa3VwZI1t9pZR1AOeK9AoAz9WsF1XTLnTXYqtzE0RI7bhjNeV6Jb/ABM8L6bFoVrp1newW2Vjl83YWXORkHvzXrV7HdS2ksdjIIp2QiN2G4K2OCR3wa89/sT4nd9etR/27D/GgDM1Dx54u8NiK78VaNHDZPII2lgmDlS3tUXhR1k+KfiJ1OQ0MJH0IWp9Q8A+KvEYitPFOtrPZxyCRooYQhYr71oat4F1JdefxH4V1H+z7maNYpleMSI4UADg+wFAHptfMfiv/kY/Gg/6cIv5x16d/YXxOPH9v2w+lsKor8M7l9P1dr/UTdanq0Yjedk2qqgg4Cg+1AFLwt48ks/Dmn2g0TUpvKt408yOIFGwAMqc9D2pninxHrXizRJ/D2l+H75JLsBPMuECIgyDknPtXqug6Y2jaLZ6U7iRrWFIiwGAdoxnFa9AHzjHdyeD/iFbQSW099JBpEUBS2Xe2RjJxxxxXoZ+Is3bw/qp/wC2I/xrWHhSUeOj4v8APXYbX7P5W3nOeua7WgD5z1ex1rWX8QeMr6xfTrc6a1vFHLjzGPB3EDp0r13wBz4L0n/r2T+VdFqNhb6pYz6ddDdFcRtG49mGDXmVh4M8c6HbLpui6/GLOLiJZoAzKvpmgD1uvmLxP/yMfjX/AK8I/wCcdeojRPiaP+Y9bf8AgMP8ajb4eveazrGoalch4tWtVt2VFIZSAuWz06jIoAwvC+tfESLw9YR2OhwSwLboI3M4UsoUYJHbNdHBrfxIeeNJ9Bt0jLAMwuASFJ5OPYVQsPCfxB0i0j07Tteh+zQLsiEluCwUdATntWlb6P8AEdLiN7nW7Z4gwLqLYAlc8gHPHFAGBZ6F438IanqL+Hba11C01Cc3H71/LdCex9RV278TfEnTraS+vdCt2hhUvJ5dwCwVeSQPpWrd6R8RZLqV7TWraOFnJjQ2+Sqk8AnPOBWbeeF/iJqNtJY3niCAQzKUk8u2AYq3Bwc+lAHc+HNctvEmjW2tWilEuFztbqpBwR+BFblYnhzQrbw3o1votoS0duuNzdWJOSfxJrboASiiigBaSiloASiiigAooooAKKKKACk9KWk9KAAdqUdqQdqUdqAAUUCigAFFAoFADG+YhPz+lSUxeSW/D8qfQAtJS1zPiPxboXha2+0avcLGSPljHLt9F/r0oA6WuN1Tx34e0zVbfRGn868uJViEcXzFSxxlj0H06185eL/jDrevb7PRs2FocjKn96w92HT6D864XwYzN4v0tmOSbuLJP+8KAPvmvg3xz/yO2qf9fb/zr7yr4O8df8jvqn/X2/8AOgD7osv+POH/AK5r/KuSv/Hvh/SvEJ8N6pIbabYrrI/+rbf2z2P14rrbL/jzh/65r/KvkL42/wDI8P8A9e8X9aAPsNHWRQ6EMp5BHIIp9fD/AIS+JHiLwmywwyfabQdYJSSAP9k9V/l7V9QeE/iP4d8WKsVvJ9nuj1glIDZ/2T0b8PyoA9AooooAjPyuD68GpKa4ypHelByM+tAGNb/8h+7/AOveD/0KStqsW3/5D93/ANe8H/oUlXr+6+w2M97t3eRG0m3pnaCcUAXaSsGxl1y5ghuZGtlWVVcqFckBhnGd364rN0/Vtb1e1mvrRbeKNJZY0WTezHymK5JBA5x6UAdhRXmVj8QjLd2i39r5Nrc28Ujzq2RFJKzKob/ZJXAPr1rX1bxcLPWrXR7CH7QXmSK4kzhYvMBKj3Y4zjsKAO2orzW38Z3M+jnVTcWCOFdvs7Od+VJ+X73U49KsN44ZbiKU24WxTy0upWbDRSygEDb3CZAc9s+xoA9CoritU8XNpOtNZT2zPZRwRyy3CHJj8xmALL3X5eSOlSyeIr6dr1tIgju0s2iOFb5pI3QOSh6bhngdDQB2FFc1o+vNr0v2jToiLBVwZpAVZn7qqnsvRie/Aq/a6g9xql5p7KAtqIiG7nzATz9MUAa1Fcb4l8TXGhzNFBCsu2ynuvmJHMRUBfod1Os/GWnS6LLqt8DbSWx2TwNy6SdkA77v4cdaAOxpK4DRvFep6u0ML2qWs00lzHtclthg24zjqTnnFalpqOtSXV5HP9n8uycK+1X3MCgfjLcdcUAdXRXIaD4mXU7aC6umRPtKKyRoj5Ut2LHg/Xiix1XXNSsJNSt1tkRXlVUfeTiNmXkg98elAHYUlZ2kXx1TS7bUduz7REsm3OcbgDjNaNABRRRQAUUUUAFFFFABRRSUALRRSUAFFFFABRR3ooAWkpaSgAooooAKKKKACk9KWk9KAAdqUUg7UvpQACigUUAFA6UelHagBqfcHvz+dU9R1PT9JtXvdSnSCFOrOcD/APX7VzPjPX9a8PaP9s0XT2vpMckciMf3io+Y/hXxlr/iXW/El2brWrhpWB4U8Kvsq9BQB7b4v+N7vvsfCcewdDcyDn/gC/1P5V8/Xt9eajcNd38zzzOcs7nJP51TooAK6jwT/wAjdpX/AF9Rf+hCuXrqPBP/ACN2lf8AX1F/6EKAPvuvg3x3/wAjvqn/AF9v/OvvKvg7x5/yO+q/9fT/AM6APuey/wCPOD/rmv8AKvkL42/8jw//AF7xf1r69sf+PKD/AK5r/IV8h/G3/keH/wCveL+tAHkVPR2Rg6Eqy8gjgg0yigD2nwf8ZNZ0UJZa6Df2owA5P71R9T978fzr6Y8P+KdE8T2wutHuFl/vJ0df95eor8/qvWGo32l3K3unTPBMnIdDg0AfopTE+7j04ryX4ZeMfFHiW32azYHykHy3g+RWI7FT1PuvFetp0/E/zoAx4P8AkP3f/XvB/wChSVrTQxzxPBKNySKVYHuDwRWVB/yH7v8A694P/QpK2qAMO30OG1EaQ3FyEjwFQykgAdBz2qBfDVjH5q20txCkrs7JHKyruc5YgdsnmujpKAOfg8L6JBA9sluDFJbrbMjEsDGmcDn/AHjz1plp4V0axtILK3iIS3mFwpLEsZBn5mY8nr3ro6M0AZtlpNjp1qlnaxhY4wQueTyc9fxqknhjw+tt9layhdSCGLoGZt3UliCST61v0UAY+n6Fp+nNugVmPkpb5di2Y0JKg59NxqPR/D2laAbj+yovKW6k8x1BO0HGPlHYe1blFAFKwsLbTLYWloCsYZmAJzy7Fj+pqrPo1tNePfo8sMsiqrmJyu4LnGR04zWvRQBz9z4b029GLzzJiYZINzuSdkhBYZ/AUT+GNFudVh1maAG4gACnJwdv3Sw6Erk4J6V0GaWgDFttC060uRdQoRIsksgOSfmmIL/nirsVjbwyXEqL810waTJyCQoX+Qq5RQBh2mg21ikcVtNOsUWAkfmEqAOgx6VCnhmyjR4oJrmKN2ZiiSsFy5JbA7ZJNdFRQBXtLWCyto7O2XbFCoRF9FUYAqxRRQAUUUUAFFFFABSUtFABSUtFABSUtFACUUtJQAUUtJQAtJRRQAUUUUAFFFFABSelL6UnpQADtSjtSDtR6UAKKKBRQACgdKKBQAifcA/CvNfF/wALfD3indcov2O8PPnRDhj/ALS9D9etekrwSv4/nT6APhTxV4A8ReE5Cb6EyW+cLPHyh+v90/WuIr9HpIo5o2imUOjDBVhkEH1FeIeMPgtpeqb73w4wsrg5JiP+qY+3938OPagD5QrqPBP/ACN2lf8AX1F/6EKpa34e1jw7dGz1e3eBx0JHyt7q3Qirvgn/AJG7Sv8Ar6i/9CFAH31Xwf48/wCR31T/AK+n/nX3hXwf48/5HfVP+vp/50Afc1j/AMeUH/XNf5CvkT42/wDI8P8A9e8X9a+u7H/jyg/65r/IV8ifG3/keG/694v60AeRUVdsbC91O5Wz0+F55n4VEGSa+gvCHwQZtl94tfA4Itozz/wNh/IfnQB4foHhnW/EtyLXR7dpj/E3RF/3mPAr6Y8IfBnR9H2XuvkX1yOdmP3Sn6fxfjx7V67p+m2OlWyWWmwpBCnARBgf/Xq9QAxESJBHGoVVGAAMAChPuj35pXOFPrSgYGPSgDHt/wDkP3f/AF7wf+hSVs1jQf8AIeu/+veD/wBCkq1f6ppulRLNqVxHbIx2hpWCgn0GaAL9GK5v/hMvCf8A0FbT/v6n+NJ/wmXhP/oK2n/f1P8AGgDpcUVzX/CZeE/+graf9/U/xo/4TLwn/wBBW0/7/L/jQB0tGK5v/hM/Cf8A0FbT/v8AJ/jSf8Jl4T/6Ctp/39T/ABoA6WjFc1/wmXhP/oK2n/f1P8aP+Ey8J/8AQVtP+/qf40AdLijFc3/wmXhP/oK2n/f1P8aT/hMvCf8A0FbT/v6n+NAHS4oxXNf8Jl4T/wCgraf9/V/xo/4TLwn/ANBW0/7+r/jQB0uKMVzf/CZeE/8AoK2n/f5P8aP+Ey8J/wDQVtP+/wAv+NAHSYoxXNf8Jl4T/wCgraf9/V/xo/4TLwn/ANBW0/7+r/jQB0uKK5v/AITLwn/0FbT/AL/L/jR/wmXhP/oK2n/f1f8AGgDpKK5v/hMvCf8A0FbT/v8AL/jSf8Jl4T/6Ctp/39X/ABoA6XFFc3/wmXhP/oK2n/f5P8aP+Ey8J/8AQVtP+/y/40AdJRXNf8Jl4T/6Ctp/39X/ABpf+Ey8J/8AQVtP+/q/40AdJijFc3/wmXhP/oK2n/f5P8aT/hM/Cf8A0FbT/v6n+NAHS0VzX/CZeE/+graf9/U/xo/4TLwn/wBBW0/7+p/jQB0tFc7H4t8LzSLFFqdqzuQqqJVJJPQDmuioASilpKACiiigAooooAKKKKAD0pPSlpPSgAHaj0oHalHagAFFAooAB2ooooAa3ysG/A0+kIDDBpqE/dbqP1FAElJRRQBm6ppGm61aNZapAlxE38LjOPcHsfcV4lL8HDpHiWw1nw9LvtobhJJIZT8yqGydrdwPQ8/Wvf6KACvg/wAe/wDI8ap/19N/OvvCvlXxZ8LPGOq+KL7U7K3jaCednRjIoJU+xNAH1DZf8ecP/XNf5V4x4w+GF74x8ZHUp5hb2KwxoWHLsVzkAdvqa9ptUaK2ijf7yooP1AqegDm/DvhPQvC1t9n0i3EZI+aQ8u31b+nSukoooAKKKazbRn8qAEPzOB6c0+mquBz1PJp1AGNb/wDIfu/+veD/ANCkrE8beDLbxrYQ2FzcPbiGTzAyAEk4Ixz9a27f/kPXf/XvB/6FJWzQB4B/woDSP+gnP/3wtH/CgNI/6Cc//fC19AUlAHgH/CgNI/6CU/8A3wtL/wAKB0f/AKCU/wD3wte/UUAeA/8ACgNH/wCglP8A98LR/wAKB0f/AKCU/wD3wte/UUAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCc/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeA/8ACgNI/wCglP8A98LR/wAKA0f/AKCU/wD3wte/UUAeAf8ACgNI/wCglP8A98LR/wAKA0j/AKCU/wD3wte/0UAeFWPwL0qxvYL1NRmYwSLIAUXBKkHFe60UlABS0lFABRRRQAUUUUAFFFFABSelLSelAAO1KO1IO1KO1AAKKBRQAelFHpRQAU1lzyOCKd6UUANVt3sR1FPpjJnkcEd6QPg7X4P6GgCWikooAWikooAWikooAWikzTGcLx1PoKAHMwUZNMUFjvb8B6UBSTufr2HpUlABRSUtAGNB/wAh+7/694P/AEKStmsaD/kP3f8A17w/+hSVrsyopdzgKMk+gFADqKoWupWV7bG7tpN0a5ycEYxzyDg9Oa4vV9V1X7bILWU+WVV4RCScKw4LgQv1OcDI4oA9EpM1gWmtxi2s01NliurlR8qhsbicd1BAJ6bselZVk+sac7W2rXaFUYzvITudo84Chdo2jPuT2FAHaUVinX9IEcUpnAExIXg5+U7TkY+XB4JOMGtqgAoqC4uIbWIzXDBEBAJPqxAH6moLvULSxKrcMdz52qqlmIHU4UE4HrQBeorNbV9OS0S9MwMTnapAJJbpgKBnPHTGaj/tvTBby3TzeWkJAk3goV3dMhgDz2oA1qKrxXME7MkLhyoBIB6BhkfmKxdf1SC0gNklyLe6mX92SCfzIB25APJ+vagDos0Vx+m615FsJ9UukKR/uMpl9zr95mYKBx3wMDufTo21CySTymmTeHEZGckMRuAPpkc0AXaKy7XWdMvFDwTqQXCDPy5YjIAzjORyPUU+TVbCOFLgy5WUlU2gsWI6gADJ6GgDRorLGsacbd7ky7VjbYwYEMGPQbSN2TngY5pF1rTWtZLzzdqQsFfcrBlY4wCpG7JyMDHOaANWjpVGHUbK5WJoZQwnUvH7quMn8MiuR8QazFcpbLZy5tzMomJSTY6kgABlUhgfQHk47cEA7yikGMcVDcXMFpEZ7hgiDAyfU9APc+lAE9LXHW+oyf2pcX8t2BYxqAY3BVlLbQo2FQ2Sc4OTnOMVuR6zp0kUs/mbFgwJA6lGXPTIYA89vWgDUorhYL/U59Znt4bgqlyAYfOVk2Kv3tqsg3N/wL3ro31vTY5/s7y/MGCFgrFA3TBcDaDntmgDXooooASiiigA70UUUAFFFFABRRRQAUUUUAFJ6UtJ6UAA7UelA7Uo7UAAooFFAB6UUelFABRRR6UAFBAYYNHpRQAzYy/cP4Hmjew+8p/Dmn0ZoAZ5qdzj68UebH/eH50+jAoAZ5sf94Ub8/dUn9KfxRQAzDt944Ht/jTlVV4UYpaKACiiigApaSloAxoP+Q9df9e8P/oUlbBUMCrDIPBFY8H/ACH7v/r3h/8AQpK2aAOEjuNL0S21PTWZLYmR2ii6Fg6DGxe+Txx3q5Pa2djYW13dzy2UpijhaRGIAYLxvHK8HPJ+ldaURiGZQSOhpSAeDzQBxl9tutHsdYv4lE8TQu0hXlF3AsfUDufSq+hGfVL2YajLDeqIDG7RYaPDNkKSAATjnHYY+td4QCMGmqioNqAAe3FAHnFlprRaBqV1IvzySSpGoH3YllbAH1OSa9IFLgUUAc54r8z+wZzCQGVo2Bb7oxIpyfYd/aubvZL/AFy9g/s7fbvc2qv5gyFRVc7sspB54xjr9M16MRng0AAdqAPPbye/sNIdrRkSX7ZKvnSAbVPzfMeCFDMME471Lc3tvcpeX4hW/jjt4I5PLPyPIGYnawz93OcjpXelQRgjg0iqqjaoAHoKAMbRJLaS3Y2UDRRZB3NnLsRycnk46Z79qpeI4LIm2mu9sStJ5b3B4ZEIJIDfw7iNufeuopCAwwRkUAeeXVvaN4X1GW2t1kgiaR7NcdtoHyegLbsH0qJ9HurDUNHuyAz3M5+2n1co7qf+AklR7Yr0jAxjtRgHrQB50ug/bdW1OOKNYYbXYbXaMATlFO4D/ZwPzNRx6rcWPh3TZ7kPbiQSNKY1DOrZJ2Lu4yeee+MDk16VikIBGMUAcrokFwmqagLuTz/9S0bsoDbSpxuxgbh0yAKzdTgE0etK6/KZ4CTjO0BY8tjvtHOPau9xSYH50Acfby2bXtpFpUi3SWltMG8vbgZ2bQdo2gnB4rA+13mqaYlxBO7GK5tlmiZFEWC6kiPHzAr05OeORXpyoqcIAM+nFLtHpQAtZ2q211d2MkFlIIpjgq5GcEHnpz0yMjpWjRQBxHh12ur6T7SwmkgiETsRk7o5pAuf9rGD+tM1uESPrOQeLSFlI4IZTIQQR3BwRXcgAZwOtGB+dAHO3lulvdaRDFkrHMwBJLHHkv1JyfzrjBaanPZTyq7RWtpHNCynOJnVn+ZRnHJIJJGcjjvn1bFJgYxQADpRS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFJ6UtJ6UAA7UopB2pR2oAKKKKAD0oo9KKACj0oo9KAD0opPSloAKP8aKP8aACiiigAooooAKKKKACiiigApaSloAxoP8AkP3f/XvB/wChSVs1iwf8h+7/AOveD/0KStqgApKWkoAWikooAWikooAWikooAWiikoAWikooAWikooAWikooAWiiigAopKWgAopKWgAopKWgApKKKACiiigAooooAKKKKACiiigAooooAKKKKACk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKT0paQdqAFo/xo9KKAD/ABopP8aWgA/xoo/xo/xoAKKKKACiiigA9KPSiigApaSigCjHaNHqM18WGJY40A7goWP/ALNV+kooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiij0oAKKKKAD0oo9KKACiiigAooooAKKKKACk9KWk9KAAdqX0pB2pR2oABRQKKAD0oo9KKAAUelFFABRRRQAUUUUAH+NJ/jS/40n+NAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUelFHpQAUUCigA9KKPSigAooooAKT/GlooAT/ABpaT/GloAPSk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKKKKAD0ooooAKKKKAD/ABpP8aX/ABpP8aAFooooAKKKKACiiigAoo9KBQAUUUUAFFFFABRRRQAUUUUAFFFFABRR60UAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUelFHpQACj0pB2pR2oAPSij0o9KACiiigAooooAT/ABpaT/GloAPSk9KX0pPSgAHalHakHalHagAFFAooAPSij0ooAKKKPSgAooooAKKKKAD/ABoo/wAaT/GgBaP8aKKACiiigA9KKKKACj0oooAKKKKACiiigAooooAKKP8AGigAooooAD3oNB70GgAooooAKKKKACiiigANFBooAKKKKACiiigAooooAKKKKACj0oFHpQAg7Uo7Ug7UvpQAelFFFABRRRQAf40UUUAJ/jS0n+NLQAelJ6UvpSelAAO1HpQO1KO1AAKKBRQACij0ooAKKKKACiiigAooooAP8aT/ABpf8aT/ABoAWiiigAo9KKPSgAooooAKKKKACiiigAooooAKKKKAD/Gij/GigAooooADQaPWg0AFFFFABRR60etABQaD3o/woAKP8KKKACiiigAooooAKKP8KKACj0ooFAB6UelFFACDtS+lFHpQAnpS0UUAFFFAoAKKKP8AGgBP8aWk/wAaWgA9KT0paKAEHalHagUUAFFFFAAKKKKACiiigAooooAKKKKACiiigAooooAKPSiigAooooAKKKKACiiigAooooAKKKKAD/GiiigAooNFAAaDRQaACg96KKAD1ooooAD3oo9aKAA0UUUAFFFFABRRRQAUUUUAFHpRRQAUelFHpQAUCiigAoopKAFooooAKP8AGiigAopP8aWgAopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAEopaKAP//Z" alt="logo">
+      <div>
+        <strong>THE SUPPLIES COMPANY LIMITED</strong><br>
+        <span style="font-size:12px">บริษัท เดอะ ซัพพลายส์ จำกัด</span>
+      </div>
+      <div style="text-align:right; font-size:12px">
+        รหัส: ___________<br>ฉบับที่: ___<br>หน้า: ___/___
+      </div>
+    </div>
+    <div style="margin-top:30px;">
+      <p><strong>ชื่อเอกสาร:</strong> ___________________________________________</p>
+      <p><strong>แผนก:</strong> ___________________________________________</p>
+      <div style="height:400px; border:1px dashed #ccc; margin-top:20px; display:flex; align-items:center; justify-content:center; color:#999;">
+        พื้นที่สำหรับเนื้อหาเอกสาร
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">© 2026 THE SUPPLIES COMPANY LIMITED - ใช้โลโก้นี้เท่านั้น</div>
+</div>
+
+<script>
+let selectedRow = null;
+document.getElementById('docTable').addEventListener('click', e => {
+  const tr = e.target.closest('tr');
+  if(tr && !tr.classList.contains('dept') && tr.parentNode.tagName === 'TBODY') {
+    if(selectedRow) selectedRow.style.background='';
+    selectedRow = tr;
+    selectedRow.style.background='#fff3cd';
+  }
+});
+function addRow() {
+  const tbody = document.querySelector('#docTable tbody');
+  const row = tbody.insertRow();
+  for(let i=0;i<9;i++) {
+    const cell = row.insertCell();
+    cell.contentEditable = 'true';
+    cell.textContent = i===0 ? tbody.rows.length : '';
+  }
+}
+function deleteRow() {
+  if(selectedRow) { selectedRow.remove(); selectedRow=null; }
+  else alert('กรุณาเลือกแถวที่ต้องการลบ');
+}
+function exportCSV() {
+  let csv = [];
+  const rows = document.querySelectorAll('#docTable tr');
+  for(const row of rows) {
+    const cols = row.querySelectorAll('th,td');
+    const data = [];
+    cols.forEach(c => data.push('"' + c.innerText.replace(/"/g,'""') + '"'));
+    csv.push(data.join(','));
+  }
+  const blob = new Blob([csv.join('\n')], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Master_Document_List_THE_SUPPLIES.csv';
+  a.click();
+}
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;var productId=extractProductId(target)||extractProductId(a);if(!productId)return;e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*")},true)})();</script></body>
+</html>

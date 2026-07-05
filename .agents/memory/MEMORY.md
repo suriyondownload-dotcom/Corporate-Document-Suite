@@ -1,0 +1,1 @@
+- [Supplies Co brand resolution](supplies-brand.md) — official logo/name/contact source-of-truth when attachments conflict, and format-preservation rule for this project.
